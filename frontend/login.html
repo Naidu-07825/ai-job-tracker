@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+
+  <h2>Login</h2>
+
+  <input type="email" id="email" placeholder="Email" />
+  <br /><br />
+  <input type="password" id="password" placeholder="Password" />
+  <br /><br />
+  <button onclick="login()">Login</button>
+
+  <pre id="result"></pre>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    async function login() {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/auth/login",
+          {
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+          }
+        );
+
+        document.getElementById("result").innerText =
+          JSON.stringify(response.data, null, 2);
+      } catch (error) {
+        document.getElementById("result").innerText =
+          error.response?.data?.message || "Login failed";
+      }
+    }
+  </script>
+
+</body>
+</html>
