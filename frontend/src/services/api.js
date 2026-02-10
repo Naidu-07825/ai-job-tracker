@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Allow overriding backend URL with Vite env `VITE_API_URL`, fallback to localhost:5010
-const backendHost = import.meta.env.VITE_API_URL || "http://localhost:5010";
+const backendHost = import.meta.env.VITE_API_URL;
 
 export const api = axios.create({
   baseURL: `${backendHost}/api`,
